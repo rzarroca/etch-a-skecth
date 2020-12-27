@@ -1,11 +1,15 @@
 .grid {
   border: 1px solid black;
-  height: 50px;
-  width: 50px;
+}
+
+.colored {
+  background-color: lightgray;
 }
 
 .container {
-  border: 1px solid blue;
-  width: 400px;
-  height: 400px;
+  border: 3px double black;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template: repeat(var(--size), 1fr) / repeat(var(--size), 1fr);
 }
