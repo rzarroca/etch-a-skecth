@@ -40,7 +40,15 @@ function createBoard() {
   // Change board color if mouse is over
   arrayDiv.forEach((div) => {
     div.addEventListener('mouseover', function(e) {
-      this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+      if (this.style.backgroundColor.match(/rgba/)) {
+        let opacity = Number(this.style.backgroundColor.slice(-4,-1));
+        if (opacity < 0.9) {
+          opacity += 0.1;
+          this.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+        }
+      } else {
+          this.style.backgroundColor = `rgba(0, 0, 0, 0.1)`;
+      };
     });
   });
 }
