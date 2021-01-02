@@ -25,6 +25,9 @@ buttons.forEach((button) => {
         color = 'random';
         resetBoard();
         break;
+      case 'erase':
+        color = 'white';
+        break;
     }
   });
 });
@@ -41,13 +44,28 @@ function createBoard() {
     container.appendChild(arrayDiv[i]);
   }
 
-  // Crate event on divs
-  arrayDiv.forEach((div) => {
-    div.addEventListener('mouseover', paintBoard);
+  //start Drawing
+  container.addEventListener('mousedown', (e) => {
+    arrayDiv.forEach((div) => {
+      div.addEventListener('mouseover', paintBoard);
+    })
+  });
+
+  //stop Drawing
+  container.addEventListener('mouseup', (e) => {
+    arrayDiv.forEach((div) => {
+      div.removeEventListener('mouseover', paintBoard);
+    });
+  });
+
+  container.addEventListener('mouseleave', (e) => {
+    arrayDiv.forEach((div) => {
+      div.removeEventListener('mouseover', paintBoard);
+    });
   });
 }
 
-// Set how to paint the board
+// Set how the board will be painted
 function paintBoard(e) {
   if (color == 'gray') {
     if (this.style.backgroundColor.match(/rgba/)) {
@@ -59,7 +77,7 @@ function paintBoard(e) {
     } else {
         this.style.backgroundColor = `rgba(0, 0, 0, 0.1)`;
     }
-  } else {
+  } else if (color == 'random') {
     if (this.style.backgroundColor.match(/rgba/)) {
       return;
     } else {
@@ -69,6 +87,8 @@ function paintBoard(e) {
       let a = Math.random();
       this.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
     }
+  } else {
+    this.style.backgroundColor = 'white';
   }
 }
 
