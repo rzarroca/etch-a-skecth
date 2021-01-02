@@ -41,13 +41,22 @@ function createBoard() {
     container.appendChild(arrayDiv[i]);
   }
 
-  // Crate event on divs
-  arrayDiv.forEach((div) => {
-    div.addEventListener('mouseover', paintBoard);
+  //start Drawing
+  container.addEventListener('mousedown', (e) => {
+    arrayDiv.forEach((div) => {
+      div.addEventListener('mouseover', paintBoard);
+    })
+  });
+
+  //stop Drawing
+  container.addEventListener('mouseup', (e) => {
+    arrayDiv.forEach((div) => {
+      div.removeEventListener('mouseover', paintBoard);
+    });
   });
 }
 
-// Set how to paint the board
+// Set how the board will be painted
 function paintBoard(e) {
   if (color == 'gray') {
     if (this.style.backgroundColor.match(/rgba/)) {
