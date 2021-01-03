@@ -1,11 +1,70 @@
-.grid {
-  border: 1px solid gray;
+html {
+  height: 100%;
+  background-image: linear-gradient(rgba(190, 190, 190, 0),
+   rgba(190, 190, 190, 1));
+}
+
+header {
+font: italic 22px Serif;
+text-align: center;
+margin-bottom: 20px;
+margin-top: 20px;
+}
+
+footer {
+  font: 12px Serif;
+  position: absolute;
+  bottom: 5px;
+  right: 2vw;
+}
+
+.tools, .color {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 20%;
+  padding-right: 25%;
+  margin-bottom: 15px;
+
+}
+
+button {
+  margin-left: 5%;
+}
+
+@media (max-width: 700px) {
+  .box {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+  }
+
+  .container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+  }
+}
+
+@media (min-width: 700px) {
+  .container {
+    width: 650px;
+    height: 650px;
+  }
 }
 
 .container {
-  border: 3px double black;
-  width: 500px;
-  height: 500px;
+  margin: auto;
+  border: 5px double black;
+  background-color: white;
   display: grid;
   grid-template: repeat(var(--size), 1fr) / repeat(var(--size), 1fr);
+  margin-bottom: 15px;
+}
+
+.grid {
+  border: 1px solid lightgray;
 }
